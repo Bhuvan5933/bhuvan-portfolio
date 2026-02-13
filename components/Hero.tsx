@@ -38,8 +38,9 @@ const MagneticButton: React.FC<{
   className: string; 
   href: string;
   download?: boolean;
+  onClick?: () => void;
 }>
-= ({ children, className, href, download }) => 
+= ({ children, className, href, download, onClick }) => 
  {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -62,8 +63,9 @@ const MagneticButton: React.FC<{
 
   return (
     <motion.a
-  href={href}
-  download={download ? "Bhuvan_Giri_Resume_2026.pdf" : undefined}
+      href={href}
+      download={download ? "Bhuvan_Giri_Resume_2026.pdf" : undefined}
+      onClick={onClick}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{ x: springX, y: springY }}
@@ -97,6 +99,24 @@ const Hero: React.FC = () => {
   const contentY = useTransform(scrollYProgress, [0, 1], [0, -100]);
   // Changed opacity to persist longer (up to 0.8 scroll progress)
   const contentOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+
+  const handleScrollToWork = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const workSection = document.getElementById('work');
+    if (workSection) {
+      workSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleDownloadResume = () => {
+    // Create a link to download the resume
+    const link = document.createElement('a');
+    link.href = '/resume.pdf';
+    link.download = 'Bhuvan_Giri_Resume_2026.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   return (
     <section 
@@ -137,6 +157,7 @@ const Hero: React.FC = () => {
             <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 md:gap-6">
               <MagneticButton 
                 href="#work" 
+                onClick={handleScrollToWork}
                 className="group relative px-10 py-5 bg-white text-black font-black tracking-[0.2em] text-[10px] uppercase flex items-center justify-center gap-4 overflow-hidden"
               >
                 <span className="relative z-10">Launch Gallery</span>
@@ -146,6 +167,7 @@ const Hero: React.FC = () => {
 
              <MagneticButton 
   href="/resume.pdf"
+  onClick={handleDownloadResume}
   download
   className="px-10 py-5 border border-zinc-800 bg-zinc-900/50 backdrop-blur-xl text-white font-black tracking-[0.2em] text-[10px] uppercase flex items-center justify-center gap-4 hover:border-violet-500 transition-all"
 >
