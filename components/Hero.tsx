@@ -37,7 +37,10 @@ const MagneticButton: React.FC<{
   children: React.ReactNode; 
   className: string; 
   href: string;
-}> = ({ children, className, href }) => {
+  download?: boolean;
+}>
+= ({ children, className, href, download }) => 
+ {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const springX = useSpring(x, { stiffness: 150, damping: 15 });
@@ -59,7 +62,8 @@ const MagneticButton: React.FC<{
 
   return (
     <motion.a
-      href={href}
+  href={href}
+  download={download ? "Bhuvan_Giri_Resume_2026.pdf" : undefined}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{ x: springX, y: springY }}
@@ -140,10 +144,11 @@ const Hero: React.FC = () => {
                 <div className="absolute inset-0 bg-violet-600 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
               </MagneticButton>
 
-              <MagneticButton 
-                href="#contact" 
-                className="px-10 py-5 border border-zinc-800 bg-zinc-900/50 backdrop-blur-xl text-white font-black tracking-[0.2em] text-[10px] uppercase flex items-center justify-center gap-4 hover:border-violet-500 transition-all"
-              >
+             <MagneticButton 
+  href="/resume.pdf"
+  download
+  className="px-10 py-5 border border-zinc-800 bg-zinc-900/50 backdrop-blur-xl text-white font-black tracking-[0.2em] text-[10px] uppercase flex items-center justify-center gap-4 hover:border-violet-500 transition-all"
+>
                 <FileText size={14} className="text-violet-500" />
                 Resume '25
               </MagneticButton>
