@@ -161,7 +161,7 @@ const Hero: React.FC = () => {
             <motion.img 
               animate={{ scale: [1, 1.05, 1] }}
               transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-              src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjkQsxg8W47PMGOC2Q8yuQi2JvDqOmPgCoMpnQ3f2wb7hKkZPDigs6pFTDajPYHhL0ShWXtRxi6UZRUAYpuT9JXJuyKYklkZNiyb7WrrLbuLjoxvRLeOfPpeeKpFwrhBEk8i3vu-RcWCY2ENZ-S4F2MTSt1tNDBtmigyuKPD-WlArDFKZOiyQIk6_R_rsdF/s320/ChatGPT%20Image%2011,%20%E0%B0%9C%E0%B0%A8%202026%2007_36_11%20PM.png" 
+              src="/images/profile.jpg"
               alt="Portrait"
               className="w-full h-full object-cover grayscale brightness-75 transition-all duration-700"
             />
